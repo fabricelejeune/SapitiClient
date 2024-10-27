@@ -93,7 +93,7 @@ class SapitiClient
 		$httpMethod = strtoupper($httpMethod);
 		if (!in_array($httpMethod, array('GET', 'POST', 'PATCH', 'DELETE'))) throw new InvalidHTTPMethodException();
 		$server_url = $this->getGeneralApiURL();
-		$full_url = implode('/', array($server_url, ltrim($functionName, '/')));
+		$full_url = implode('/', array($server_url, rtrim(ltrim($functionName, '/'), '/'))).'/';
 
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_URL, $full_url);
